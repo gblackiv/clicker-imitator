@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ShLogo from '../SH-logo.png';
 import {
   UpButton,
   DownButton,
@@ -60,6 +61,9 @@ const Clicker = () => {
       <Grid item xs={12} container justify="space-between">
         <Grid item xs={4} style={{ paddingTop: '20px' }}>
           <Occupancy {...core.occupancy} />
+        </Grid>
+        <Grid item xs={4}>
+          <img src={ShLogo} alt="logo" style={{ maxWidth: '100%' }} />
         </Grid>
         <Grid item xs={4} style={{ paddingTop: '20px' }}>
           <TotalGuests {...core.totalGuests} />
