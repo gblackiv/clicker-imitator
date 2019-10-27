@@ -10,8 +10,8 @@ import {
 import { Grid, TextField, InputAdornment } from '@material-ui/core';
 
 const Clicker = () => {
-  const [currentNumberOfGuests, setCurrentNumberOfGuests] = useState(0);
-  const [totalGuests, setTotalGuests] = useState(0);
+  const [currentNumberOfGuests, setCurrentNumberOfGuests] = useState<number>(0);
+  const [totalGuests, setTotalGuests] = useState<number>(0);
   const [reservations, setReservations] = useState('');
 
   useEffect(() => {
@@ -20,6 +20,11 @@ const Clicker = () => {
       setTotalGuests(parseInt(reservations));
     }
   }, [reservations]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target as HTMLInputElement;
+    return setReservations(newValue.value);
+  }
 
   const core = {
     upButton: {
@@ -50,8 +55,9 @@ const Clicker = () => {
           <InputAdornment position="start">Reservations</InputAdornment>
         )
       },
-      onChange: e => {
-        setReservations(e.target.value);
+      onChange: (e: React.FormEvent<HTMLInputElement>) => {
+        const newValue = e.target as HTMLTextAreaElement;
+        setReservations(newValue.value);
       }
     }
   };
@@ -79,7 +85,14 @@ const Clicker = () => {
         <DownButton {...core.downButton} />
       </Grid>
       <Grid item xs={5}>
-        <TextField {...core.reservations} />
+        <TextField value={reservations}
+          type='number'
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Reservations</InputAdornment>
+            )
+          }}
+          onChange={handleChange} />
       </Grid>
     </Grid>
   );

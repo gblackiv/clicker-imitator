@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 import { Typography } from '@material-ui/core';
 
-const TotalGuests = props => {
+interface IProps {
+  totalGuests: number
+}
+
+const TotalGuests = (props: IProps) => {
   return (
     <Fragment>
       <Typography>Total Guests:</Typography>

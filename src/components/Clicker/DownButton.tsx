@@ -2,7 +2,12 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { Remove } from '@material-ui/icons';
 
-const DownButton = props => {
+interface IProps {
+  disabled: boolean,
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+}
+
+const DownButton = (props: IProps) => {
   return (
     <Button
       disabled={props.disabled}
